@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  title?: string;
+}
+
+const { src, alt, title = "" } = Astro.props;
+const basePath = src.replace(/\.(png|jpg)$/i, "");
+---
+
+<picture>
+  <source
+    srcset={`${basePath}-640w.webp 640w, ${basePath}-1024w.webp 1024w, ${basePath}-1920w.webp 1920w`}
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 640px, 1024px"
+    type="image/webp"
+  />
+  <img
+    class="w-full mx-auto overflow-hidden"
+    src={src}
+    alt={alt}
+    title={title}
+    loading="lazy"
+  />
+</picture>

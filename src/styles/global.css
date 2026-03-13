@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gammaYellowBackground: #F2E57C;
+  --color-gammaYellowLight: #FFF6B8;
+  --color-gammaPurpleGray: #E6E6E6;
+}
+
+@layer base {
+  html {
+    @apply scroll-pt-[70px] md:scroll-pt-0;
+  }
+
+  body {
+    background-color: #f2e57c;
+    background-image: url("/images/gamma_background.png");
+    background-position: top center;
+    background-size: 150%;
+    background-repeat: repeat;
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  p,
+  li {
+    @apply text-lg;
+  }
+  p {
+    @apply mt-4 leading-[1.6rem];
+  }
+  ul {
+    @apply mt-4 list-disc;
+  }
+  ol {
+    @apply mt-4 list-decimal;
+  }
+  li {
+    @apply ml-4;
+  }
+  ol li {
+    @apply ml-8;
+  }
+  a {
+    @apply text-black underline font-bold;
+  }
+
+  h1 {
+    @apply text-4xl mt-4 font-bold;
+  }
+
+  h2 {
+    @apply text-3xl font-bold mt-4;
+  }
+
+  h3 {
+    @apply mt-6 uppercase font-bold text-2xl;
+  }
+
+  h4 {
+    @apply my-2 uppercase font-bold text-xl;
+  }
+
+  .main-header {
+    transition: background-color 0.15s;
+  }
+
+  .main-menu {
+    transition: max-height 0.25s;
+  }
+
+  .intro h1 {
+    @apply text-3xl md:text-4xl mb-8;
+  }
+
+  .intro p {
+    @apply max-w-[400px];
+  }
+
+  .activity-box {
+    @apply bg-gammaYellowLight px-4 py-2 pb-4 mb-4 md:mb-2 rounded-sm;
+  }
+
+  .activity-box h5 {
+    @apply mt-8 text-xl font-bold;
+  }
+
+  .screenshot-box {
+    @apply bg-gammaYellowLight px-4 pt-4 pb-0 lg:px-6 lg:pt-6 mt-4 md:mt-0 mb-4 md:mb-8 rounded-sm;
+  }
+
+  .screenshot {
+    @apply my-0 mx-0 py-0 px-0;
+  }
+
+  .screenshot-box img {
+    @apply pb-4 lg:pb-6;
+  }
+
+  .link-box p,
+  .link-box a {
+    @apply text-white my-1 py-1;
+  }
+
+  .link-box img {
+    @apply inline-block w-[30px];
+  }
+
+  .link-sep a {
+    @apply w-full bg-black px-2 py-2 rounded-md text-center inline-block;
+  }
+
+  .game-hero-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .game-hero-link:hover {
+    transform: scale(1.02);
+  }
+
+  .game-hero-link:hover img {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .game-hero-link:focus {
+    outline: 2px solid black;
+    outline-offset: 2px;
+  }
+
+  .game-hero-link p {
+    @apply mt-2;
+  }
+}

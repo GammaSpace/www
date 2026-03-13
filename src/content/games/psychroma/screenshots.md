@@ -1,0 +1,5 @@
+![Psychroma Screenshot #1 Alt Text](/content/games/psychroma/images/psychroma_screenshot01.png "Psychroma Gameplay Screenshot")
+![Psychroma Screenshot #2 Alt Text](/content/games/psychroma/images/psychroma_screenshot02.png "Psychroma Gameplay Screenshot")
+![Psychroma Screenshot #3 Alt Text](/content/games/psychroma/images/psychroma_screenshot03.png "Psychroma Gameplay Screenshot")
+![Psychroma Screenshot #4 Alt Text](/content/games/psychroma/images/psychroma_screenshot04.png "Psychroma Gameplay Screenshot")
+![Psychroma Screenshot #5 Alt Text](/content/games/psychroma/images/psychroma_screenshot05.png "Psychroma Gameplay Screenshot")

@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ScreenshotImage from "../../components/ScreenshotImage.astro";
+import ImpactBox from "../../components/ImpactBox.astro";
+import { marked } from "marked";
+import fs from "node:fs";
+import path from "node:path";
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "psychroma" } },
+    { params: { slug: "street-uni-x" } },
+  ];
+}
+
+const { slug } = Astro.params;
+
+const gameDir = path.join(process.cwd(), "src/content/games", slug);
+const sharedDir = path.join(process.cwd(), "src/content/shared");
+
+function readFile(dir: string, file: string): string {
+  return fs.readFileSync(path.join(dir, file), "utf-8").trim();
+}
+
+const title = readFile(gameDir, "title.md");
+const author = readFile(gameDir, "author.md");
+const intro = readFile(gameDir, "intro.md");
+const description = readFile(gameDir, "description.md");
+const features = readFile(gameDir, "features.md");
+const impactRaw = readFile(gameDir, "impact.md");
+const about = readFile(gameDir, "about.md");
+const links = readFile(gameDir, "links.md");
+const screenshotsRaw = readFile(gameDir, "screenshots.md");
+const gammapub = readFile(sharedDir, "gammapub.md");
+
+const introHtml = marked.parse(intro);
+const descriptionHtml = marked.parse(description);
+const featuresHtml = marked.parse(features);
+const aboutHtml = marked.parse(about);
+const linksHtml = marked.parse(links);
+const gammapubHtml = marked.parse(gammapub);
+
+// Parse impact paragraphs
+const impactLines = impactRaw.split("\n").filter((l) => l.trim().length > 0);
+
+// Parse screenshot image references from markdown
+const screenshotPattern = /!\[([^\]]*)\]\(([^\s)]+)(?:\s+"([^"]*)")?\)/g;
+const screenshots: { src: string; alt: string; title: string }[] = [];
+let match;
+while ((match = screenshotPattern.exec(screenshotsRaw)) !== null) {
+  screenshots.push({
+    src: match[2],
+    alt: match[1],
+    title: match[3] || "",
+  });
+}
+
+const logo = `/content/games/${slug}/logo.png`;
+const hero = `/content/games/${slug}/hero.png`;
+---
+
+<BaseLayout title={`${title} - Gamma Space`}>
+  <div
+    class="-z-10 -mt-9 md:-mt-11 -ml-12 md:-ml-16 h-[280px] md:h-[460px] md:-top-32 left-0 w-[calc(100%+80px)] md:w-[calc(100%+128px)] md:h-1/4"
+  >
+    <img class="w-full h-full mx-auto object-cover" src={hero} alt="Game hero image" />
+    <div
+      class="absolute top-8 md:top-[60px] left-4 md:left-8 max-w-[240px] md:max-w-[360px] h-auto"
+    >
+      <img src={logo} alt="Game logo" />
+    </div>
+  </div>
+  <div>
+    <h1 class="mb-4">{title}</h1>
+    <div class="lg:grid lg:grid-cols-2 pt-4 gap-8 lg:gap-12 xl:gap-16">
+      <div>
+        <div class="rounded-md border-2 px-4 pb-4 mb-6 border-black">
+          <Fragment set:html={introHtml} />
+        </div>
+        <h2>Description</h2>
+        <Fragment set:html={descriptionHtml} />
+        <h2>Features</h2>
+        <Fragment set:html={featuresHtml} />
+        <h2>Impact</h2>
+        {impactLines.map((line) => (
+          <ImpactBox text={line} />
+        ))}
+        <div class="hidden xl:block mt-8">
+          <h1>About {author}</h1>
+          <Fragment set:html={aboutHtml} />
+        </div>
+      </div>
+      <div>
+        <h2 class="lg:hidden mt-6 lg:mt-0 mb-6">Screenshots</h2>
+        <div class="screenshot-box">
+          {screenshots.map((s) => (
+            <ScreenshotImage src={s.src} alt={s.alt} title={s.title} />
+          ))}
+        </div>
+        <h3 class="mb-2">Links</h3>
+        <div class="link-box bg-black px-4 py-2 mb-6">
+          <Fragment set:html={linksHtml} />
+        </div>
+      </div>
+    </div>
+    <div class="xl:hidden my-4 mt-8 mb-6">
+      <h1>About {author}</h1>
+      <Fragment set:html={aboutHtml} />
+    </div>
+    <div class="my-4">
+      <h1 class="xl:mt-8 mb-4">Gamma Space Publishing</h1>
+      <div class="rounded-md border-2 px-4 pb-4 border-black">
+        <Fragment set:html={gammapubHtml} />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

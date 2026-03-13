@@ -1,0 +1,5 @@
+- **Time Jumping**. Use a cybernetic memory card system to navigate through time.
+- **Cyber Possession**. Allow the digital ghosts of the past to possess your body in order to descramble memories, solve puzzles, and see through their perspectives.
+- **Communicate With The Dead**. Use an interactive Ouija system to speak with ghosts and gather info that would otherwise be hidden.
+- **Surgery**. Perform surgical procedures to help stabilize injured victims.
+- **Diverse Characters**. Play as [HAZE], our non-binary, mixed-race protagonist; expplore the relationship between [SALEM], a trans woman, and her disabled lesbian partner, [AGATHA]; engage with neurodivergent NPCs.

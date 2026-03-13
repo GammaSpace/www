@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="flex flex-wrap relative rounded-sm my-4 mt-6 bg-gammaYellowLight">
+  <div class="relative impact-icon w-[45px] rounded-sm bg-black">
+    <img class="absolute w-full px-[6px] pt-[6px]" src="/images/icons/impact.svg" />
+  </div>
+  <div class="px-2 py-1 w-[calc(100%-45px)]">
+    <p class="my-0 py-0">{text}</p>
+  </div>
+</div>
